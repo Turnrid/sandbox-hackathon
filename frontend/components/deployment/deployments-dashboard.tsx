@@ -1,10 +1,7 @@
 'use client';
 
-import { Bell } from 'lucide-react';
 import { useState } from 'react';
-import Sidebar from '../main/sidebar';
 import DeploymentCard from './deployment-card';
-import { Button } from '@/components/ui/button';
 import { Deployment } from '@/models/IDeployment';
 
 export default function DeploymentsDashboard() {

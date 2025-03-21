@@ -1,3 +1,5 @@
+'use client';
+
 import { BreadcrumbItem } from '@/components/ui/breadcrumb';
 import { Bell, ChevronRight, Settings, LogOut } from 'lucide-react';
 import Link from 'next/link';
@@ -8,6 +10,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { usePathname } from 'next/navigation';
 
 interface BreadcrumbItemProps {
   label: string;
@@ -24,6 +27,7 @@ export function Header({
   breadcrumbItems = [],
   userInitials = 'JP',
 }: DashboardHeaderProps) {
+  const pathName = usePathname();
   return (
     <div className="bg-[#273142] px-4 py-2 text-white text-sm flex items-center justify-between">
       <Breadcrumb className="text-white">
@@ -49,6 +53,11 @@ export function Header({
         </BreadcrumbList>
       </Breadcrumb>
       <div className="flex items-center gap-2">
+        {pathName === '/deployments' && (
+          <Button className="bg-[#3f51b5] hover:bg-blue-800 transition-colors">
+            + Add Deployment
+          </Button>
+        )}
         <Link href="/settings">
           <Button
             variant="ghost"

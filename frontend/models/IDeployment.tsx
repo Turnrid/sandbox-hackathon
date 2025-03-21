@@ -43,3 +43,14 @@ export interface Device {
   lastAccessed: string;
   lastHeartbeat: string;
 }
+
+export interface DeploymentCardProps {
+  deployment: {
+    services: {
+      name: string;
+      status?: string;
+      type: string;
+      versions: { number: string; color: string }[];
+    }[];
+  };
+}

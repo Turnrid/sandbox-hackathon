@@ -1,15 +1,6 @@
 import { Card } from '@/components/ui/card';
+import { DeploymentCardProps } from '@/models/IDeployment';
 
-interface DeploymentCardProps {
-  deployment: {
-    services: {
-      name: string;
-      status?: string;
-      type: string;
-      versions: { number: string; color: string }[];
-    }[];
-  };
-}
 
 export default function ServiceCard({ deployment }: DeploymentCardProps) {
   return (

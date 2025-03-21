@@ -11,6 +11,9 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { AddDeploymentDrawer } from '@/components/deployment/add-deployment-drawer';
+
 
 interface BreadcrumbItemProps {
   label: string;
@@ -27,8 +30,11 @@ export function Header({
   breadcrumbItems = [],
   userInitials = 'JP',
 }: DashboardHeaderProps) {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   const pathName = usePathname();
   return (
+    <>
     <div className="bg-[#273142] px-4 py-2 text-white text-sm flex items-center justify-between">
       <Breadcrumb className="text-white">
         <BreadcrumbList>
@@ -54,7 +60,10 @@ export function Header({
       </Breadcrumb>
       <div className="flex items-center gap-2">
         {pathName === '/deployments' && (
-          <Button className="bg-[#3f51b5] hover:bg-blue-800 transition-colors">
+          <Button 
+            onClick={() => setIsDrawerOpen(true)}
+            className="bg-[#3f51b5] hover:bg-blue-800 transition-colors"
+          >
             + Add Deployment
           </Button>
         )}
@@ -90,5 +99,8 @@ export function Header({
         </div>
       </div>
     </div>
+          {/* ✅ Drawer */}
+          <AddDeploymentDrawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen} />
+    </>
   );
 }
